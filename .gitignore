@@ -1,0 +1,15 @@
+# Student-level data is protected under RA 10173 and must never be committed.
+zdspgc-dataset/*
+!zdspgc-dataset/README.md
+cleaned_dataset/*
+!cleaned_dataset/README.md
+python_engine/models/
+catboost_info/
+**/catboost_info/
+*.xlsx
+*.xls
+*.csv
+!folds/*.csv
+!docs/*.csv
+__pycache__/
+*.pyc

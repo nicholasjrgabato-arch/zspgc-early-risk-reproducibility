@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the accompanying article."
+title: "Reproducibility package: Evaluating Multi-Source Machine Learning and Explanation Stability for Early Academic Risk Identification in Higher Education"
+authors:
+  - family-names: Gabato
+    given-names: Nicholas P., Jr.
+  - family-names: Mayol
+    given-names: Ferdinand
+  - family-names: Delos Arcos
+    given-names: Jeanie
+license: MIT
