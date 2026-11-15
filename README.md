@@ -15,6 +15,7 @@ The study links Registrar enrollment, Registrar grade, and Tertiary Education Su
 | `cohort_parser.py`, `cleaning_helpers.py`, `build_cleaned_pipeline.py` | Parse the raw institutional spreadsheets, link records on student number, pseudonymize, engineer features, and write the de-identified analysis files |
 | `run_ml_experiment.py` | Main experiment: 5-model benchmark (Table II), source ablation (Table III), TreeSHAP and stability (Table IV, Figs. 2–4), alert capacity (Table V), subgroup audit (Table VI), prospective scoring (Fig. 5) |
 | `panel_revision_analysis.py` | Repeated 20 × 5-fold paired comparison with Nadeau–Bengio test (Table VII), fixed-capacity detection and cost analysis (Table VIII), learning curve (Table IX), grouped SHAP and permutation importance (Table X), bootstrap and DeLong tests |
+| `panel_round2_analysis.py` | Second-round revision analyses: model-selection criteria over 10 repeated partitions (Table XI), calibration slope/intercept/ECE and in-fold Platt and isotonic recalibration (Table XII), the out-of-fold predictions behind the reliability diagram (Fig. 6), grouped vs. plain stratified CV, nested CV, SHAP interaction values and controlled interaction ablation (Table XIII), and threshold derivation from Cohort 1 out-of-fold scores |
 | `revision_v4_analysis.py` | Cross-cohort Top-10 Jaccard, extended nested CV including depths 1–2, subgroup bootstrap intervals, Year-4 sensitivity analysis, depth-1 vs. depth-4 comparison |
 | `python_engine/train.py`, `python_engine/predict.py` | Training and scoring scripts used by the institutional decision-support prototype |
 | `docs/DATA_DICTIONARY.md` | Variable catalogue for every cleaned file |
@@ -30,7 +31,7 @@ The study links Registrar enrollment, Registrar grade, and Tertiary Education Su
 | Seeds | Used for |
 |---|---|
 | 42 | Reference partition (Tables II–VI, X, XII; Figs. 1–4) |
-| 1000–1019 | 20 repeated partitions (Tables VII, VIII); 1000–1009 also for the Year-4 sensitivity and depth-1 vs. depth-4 comparison |
+| 1000–1019 | 20 repeated partitions (Tables VII, VIII); 1000–1009 also for model selection (Table XI), the interaction ablation (Table XIII), grouped vs. stratified CV, the Year-4 sensitivity and the depth-1 vs. depth-4 comparison; 1000–1004 also as outer folds of the first nested cross-validation |
 | 2000–2009 | Learning curve (Table IX) |
 | 3000–3004 | Outer folds of the extended nested cross-validation |
 
@@ -55,6 +56,7 @@ pip install -r requirements.txt
 python build_cleaned_pipeline.py        # needs the raw files in zdspgc-dataset/
 python run_ml_experiment.py             # needs cleaned_dataset/student_risk_ml_dataset.csv
 python panel_revision_analysis.py
+OUT_DIR=results python panel_round2_analysis.py   # writes results/round2_results.json (published copy: results/panel_round2_results.json)
 python revision_v4_analysis.py quick    # also: y4, rf, depth1, nested
 ```
 
